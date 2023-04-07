@@ -12,7 +12,7 @@ export default function Home() {
         <Link 
           key={stack.href}
           href={stack.href}
-          className="w-20 h-20 relative border-2 border-solid m-2 rounded-xl"
+          className={`${stack.hoverClass} w-20 h-20 relative border-2 border-solid m-2 rounded-xl`}
         >
           <Image 
             src={stack.logo} 

@@ -4,14 +4,16 @@
     "logo": "/react-logo.png",
     "info": "React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Build encapsulated components that manage their own state, then compose them to make complex UIs.",
     "docs": ["https://react.dev/"],
-    "name": "React JS"
+    "name": "React JS",
+    "hoverClass": "hover:border-blue-300"
   },
   "vue": {
     "href": "/learning/vue",
     "logo": "/vue-logo.png",
     "info": "Vue (pronounced /vjuː/, like view) is a JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS, and JavaScript and provides a declarative and component-based programming model that helps you efficiently develop user interfaces, be they simple or complex.",
     "docs": ["https://vuejs.org/"],
-    "name": "Vue JS"
+    "name": "Vue JS",
+    "hoverClass": "hover:border-green-500"
   },
 
   "svelte": {
@@ -19,6 +21,7 @@
     "logo": "/svelte-logo.png",
     "info": "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. Instead of using techniques like virtual DOM diffing, Svelte writes code that surgically updates the DOM when the state of your app changes.",
     "docs": ["https://svelte.dev/"],
-    "name": "Svelte"
+    "name": "Svelte",
+    "hoverClass": "hover:border-red-500"
   }
 }

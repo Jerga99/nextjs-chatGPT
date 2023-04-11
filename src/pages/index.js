@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import stacks from "../data/stacks.json";
+import stacks from "@/data/stacks.json";
 import Image from "next/image";
 
 export default function Home() {

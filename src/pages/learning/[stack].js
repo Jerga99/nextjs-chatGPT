@@ -5,6 +5,15 @@ import Message from "@/components/Message";
 import Prompt from "@/components/Prompt";
 
 export default function Stack({stack, stackKey}) {
+
+  const onSubmit = (prompt) => {
+    if (prompt.trim().length === 0) {
+      return;
+    }
+    
+    alert(prompt);
+  } 
+
   return (
     <div className="h-full flex flex-col">
       <Header logo={stack.logo} info={stack.info} />
@@ -22,7 +31,9 @@ export default function Stack({stack, stackKey}) {
         />
       </div>
       <div className="flex p-4">
-        <Prompt />
+        <Prompt 
+          onSubmit={onSubmit}
+        />
       </div>
     </div>
   )

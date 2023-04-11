@@ -3,15 +3,27 @@ import stacks from "@/data/stacks.json";
 import Header from "@/components/Header";
 import Message from "@/components/Message";
 import Prompt from "@/components/Prompt";
+import { useState } from "react";
 
 export default function Stack({stack, stackKey}) {
+  const [messages, setMessages] = useState([]);
 
   const onSubmit = (prompt) => {
     if (prompt.trim().length === 0) {
       return;
     }
-    
-    alert(prompt);
+
+    setMessages((messages) => {
+      return [
+        ...messages,
+        {
+          id: new Date().toISOString(),
+          author: "human",
+          avatar: "https://thrangra.sirv.com/Avatar2.png",
+          text: prompt
+        }
+      ]
+    })
   } 
 
   return (
@@ -19,16 +31,15 @@ export default function Stack({stack, stackKey}) {
       <Header logo={stack.logo} info={stack.info} />
       <hr className="my-4" />
       <div className="chat flex flex-col h-full overflow-scroll">
-        <Message 
-          idx={0}
-          avatar="https://thrangra.sirv.com/Avatar2.png"
-          text="What is React JS?"
-        />
-        <Message 
-          idx={1}
-          avatar="/logo-open-ai.png"
-          text="React JS is a library for creating UIs..."
-        />
+        { messages.map((message, i) =>
+          <Message 
+            key={message.id}
+            idx={i}
+            author={message.author}
+            avatar={message.avatar}
+            text={message.text}
+          />
+        )}
       </div>
       <div className="flex p-4">
         <Prompt 

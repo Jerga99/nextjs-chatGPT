@@ -5,10 +5,8 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <div className="h-full max-w-5xl mx-auto pt-10">
-          <Main />
-          <NextScript />
-        </div>
+        <Main />
+        <NextScript />
       </body>
     </Html>
   )

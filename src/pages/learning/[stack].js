@@ -10,7 +10,16 @@ export default function Stack({stack, stackKey}) {
       <Header logo={stack.logo} info={stack.info} />
       <hr className="my-4" />
       <div className="chat flex flex-col h-full overflow-scroll">
-        <Message />
+        <Message 
+          idx={0}
+          avatar="https://thrangra.sirv.com/Avatar2.png"
+          text="What is React JS?"
+        />
+        <Message 
+          idx={1}
+          avatar="/logo-open-ai.png"
+          text="React JS is a library for creating UIs..."
+        />
       </div>
       <div className="flex p-4">
         <Prompt />

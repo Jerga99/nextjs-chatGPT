@@ -10,6 +10,7 @@ export default function Prompt({onSubmit}) {
       onChange={(e) => setPromptInput(e.target.value)}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
+          debugger
           e.preventDefault();
           onSubmit(promptInput);
           setPromptInput("");

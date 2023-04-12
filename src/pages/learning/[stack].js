@@ -14,6 +14,7 @@ export default function Stack({stack, stackKey}) {
   }, [messages]);
 
   const onSubmit = async (prompt) => {
+    debugger
     if (prompt.trim().length === 0) {
       return;
     }

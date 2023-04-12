@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = () => {\n  return <div>I'm a simple component!</div>;\n};\n\nexport default MyComponent;\n```\n\nThis example is a basic React component. It imports the React library, defines a component function, and returns a DOM element. Finally, the component is exported so it can be imported and used in other components.";
+
+const INLINE_CODE = "```jsx\nfunction a(){}\n```";
 
 export default function Message({text: initialText, avatar, idx, author}) {
   const [text, setText] = useState(author === "ai" ? "" : initialText);
@@ -27,8 +33,32 @@ export default function Message({text: initialText, avatar, idx, author}) {
         />
       </div>
       <div className="w-full">
-        <ReactMarkdown className={blinkingCursorClass}>
-          {text}
+        <ReactMarkdown 
+          className={blinkingCursorClass}
+          components={{
+            code({inline, className, children, style, ...props}) {
+              debugger
+              const match = /language-(\w+)/.exec(className || "");
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  style={darcula}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {children}
+                </SyntaxHighlighter>
+              ) : (
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              )
+            }
+          }}
+        >
+          {/* {text} */}
+          {/* {AI_RESPONSE} */}
+          {INLINE_CODE}
         </ReactMarkdown>
       </div>
     </div>

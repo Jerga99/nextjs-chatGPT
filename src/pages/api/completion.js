@@ -13,8 +13,8 @@ export default async function completion(req, res) {
     const body = req.body;
     const prompt = body.prompt || "";
 
-    await new Promise((res) => setTimeout(res, 500));
-    return res.status(200).json({result: AI_RESPONSE});
+    // await new Promise((res) => setTimeout(res, 500));
+    // return res.status(200).json({result: AI_RESPONSE});
 
     try {
       const openai = new OpenAIApi(configuration);

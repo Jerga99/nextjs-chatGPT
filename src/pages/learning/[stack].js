@@ -37,8 +37,24 @@ export default function Stack({stack, stackKey}) {
         "Content-type": "application/json"
       }
     });
+
     const json = await response.json();
-    alert(json.result);
+    
+    if (response.ok) {
+      setMessages((messages) => {
+        return [
+          ...messages,
+          {
+            id: new Date().toISOString(),
+            author: "ai",
+            avatar: "/logo-open-ai.png",
+            text: json.result
+          }
+        ]
+      });
+    } else {
+      console.error(json?.error?.message);
+    }
   } 
 
   return (

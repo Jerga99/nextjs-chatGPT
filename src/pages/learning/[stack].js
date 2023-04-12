@@ -37,6 +37,8 @@ export default function Stack({stack, stackKey}) {
         "Content-type": "application/json"
       }
     });
+    const json = await response.json();
+    alert(json.result);
   } 
 
   return (

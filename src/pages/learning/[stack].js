@@ -13,7 +13,7 @@ export default function Stack({stack, stackKey}) {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
   }, [messages]);
 
-  const onSubmit = (prompt) => {
+  const onSubmit = async (prompt) => {
     if (prompt.trim().length === 0) {
       return;
     }
@@ -28,7 +28,15 @@ export default function Stack({stack, stackKey}) {
           text: prompt
         }
       ]
-    })
+    });
+
+    const response = await fetch("/api/completion", {
+      method: "POST",
+      body: JSON.stringify({prompt}),
+      headers: {
+        "Content-type": "application/json"
+      }
+    });
   } 
 
   return (

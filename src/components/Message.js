@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Message({text: initialText, avatar, idx, author}) {
   const [text, setText] = useState(author === "ai" ? "" : initialText);
@@ -26,9 +27,9 @@ export default function Message({text: initialText, avatar, idx, author}) {
         />
       </div>
       <div className="w-full">
-        <div className={blinkingCursorClass}>
+        <ReactMarkdown className={blinkingCursorClass}>
           {text}
-        </div>
+        </ReactMarkdown>
       </div>
     </div>
   )

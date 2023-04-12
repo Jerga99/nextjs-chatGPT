@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function Message({text: initialText, avatar, idx}) {
-  const [text, setText] = useState("");
+export default function Message({text: initialText, avatar, idx, author}) {
+  const [text, setText] = useState(author === "ai" ? "" : initialText);
   const bgColorClass = idx % 2 === 0 ? "bg-slate-100" : "bg-slate-200";
 
   useEffect(() => {
@@ -12,6 +12,8 @@ export default function Message({text: initialText, avatar, idx}) {
 
     return () => clearTimeout(timeout);
   });
+
+  const blinkingCursorClass = initialText.length === text.length ? "" : "blinking-cursor";
 
   return (
     <div className={`flex flex-row ${bgColorClass} p-4`}>
@@ -24,7 +26,7 @@ export default function Message({text: initialText, avatar, idx}) {
         />
       </div>
       <div className="w-full">
-        <div className="blinking-cursor">
+        <div className={blinkingCursorClass}>
           {text}
         </div>
       </div>

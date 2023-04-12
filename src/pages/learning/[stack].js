@@ -3,10 +3,15 @@ import stacks from "@/data/stacks.json";
 import Header from "@/components/Header";
 import Message from "@/components/Message";
 import Prompt from "@/components/Prompt";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Stack({stack, stackKey}) {
   const [messages, setMessages] = useState([]);
+  const chatRef = useRef(null);
+
+  useEffect(() => {
+    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
+  }, [messages]);
 
   const onSubmit = (prompt) => {
     if (prompt.trim().length === 0) {
@@ -30,7 +35,7 @@ export default function Stack({stack, stackKey}) {
     <div className="h-full flex flex-col">
       <Header logo={stack.logo} info={stack.info} />
       <hr className="my-4" />
-      <div className="chat flex flex-col h-full overflow-scroll">
+      <div ref={chatRef} className="chat flex flex-col h-full overflow-scroll">
         { messages.map((message, i) =>
           <Message 
             key={message.id}

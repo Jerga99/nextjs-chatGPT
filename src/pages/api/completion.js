@@ -5,20 +5,21 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const aiPrompt = "The following is a conversation with Walt. Walt is helpful and creative. Walt's only knowledge is React JS library. He can only answer questions related to React JS. He only cares about React JS. Walt provides often code examples. Walt provides answers formated in markdown format."
+const AI_PROMPT = "The following is a conversation with Walt. Walt is helpful and creative. Walt's only knowledge is React JS library. He can only answer questions related to React JS. He only cares about React JS. Walt provides often code examples. Walt provides answers formated in markdown format."
+const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = () => {\n  return <div>I'm a simple component!</div>;\n};\n\nexport default MyComponent;\n```\n\nThis example is a basic React component. It imports the React library, defines a component function, and returns a DOM element. Finally, the component is exported so it can be imported and used in other components.";
 
 export default async function completion(req, res) {
   if (req.method === "POST") {
     const body = req.body;
     const prompt = body.prompt || "";
 
-    // const aiResponse = "React JS is a library for creating UIs...";
-    // await new Promise((res) => setTimeout(res, 500));
+    await new Promise((res) => setTimeout(res, 500));
+    return res.status(200).json({result: AI_RESPONSE});
 
     try {
       const openai = new OpenAIApi(configuration);
 
-      const formatedPrompt = aiPrompt + "\n" + prompt + "\n" + "Walt:";
+      const formatedPrompt = AI_PROMPT + "\n" + prompt + "\n" + "Walt:";
 
       const completion = await openai.createCompletion({
         model: "text-davinci-003",

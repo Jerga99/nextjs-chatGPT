@@ -24,7 +24,9 @@ export default function Message({text: initialText, avatar, idx}) {
         />
       </div>
       <div className="w-full">
-        {text}
+        <div className="blinking-cursor">
+          {text}
+        </div>
       </div>
     </div>
   )

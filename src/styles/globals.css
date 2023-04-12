@@ -6,3 +6,17 @@
 html, body, #__next {
   height: 100%;
 }
+
+.blinking-cursor:after {
+  content: "|";
+  animation: blink 1s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

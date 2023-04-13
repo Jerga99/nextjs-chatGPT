@@ -39,8 +39,17 @@ export default withNextSession(async (req, res) => {
     }
   } else if (req.method === "PUT") {
     const {uid} = req.query;
+
+    if (!uid) {
+      return res.status(500).json({error: {message: "Invalid uid provided!"}});
+    }
+
+    req.session.user = {
+      uid
+    };
+
+    await req.session.save();
     
-    console.log("Should set uid: " + uid);
     return res.status(200).json(uid);
   } else {
     return res.status(500).json({error: {message: "Invalid Api Route"}})

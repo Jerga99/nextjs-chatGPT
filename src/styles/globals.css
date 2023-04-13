@@ -7,7 +7,7 @@ html, body, #__next {
   height: 100%;
 }
 
-.blinking-cursor:after {
+.blinking-cursor>:last-child:after {
   content: "|";
   animation: blink 1s steps(2, jump-none) infinite;
 }

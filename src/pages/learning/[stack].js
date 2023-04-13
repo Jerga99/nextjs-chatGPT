@@ -14,6 +14,7 @@ const SESSION_KEYS = [
 
 export default function Stack({stack, stackKey}) {
   const [messages, setMessages] = useState([]);
+  const [activeSession, setActiveSession] = useState("");
   const chatRef = useRef(null);
 
   useEffect(() => {
@@ -64,10 +65,23 @@ export default function Stack({stack, stackKey}) {
     }
   } 
 
+  const handleSessionChange = (e) => {
+    const session = e.target.value;
+
+    if (!session) {
+      console.log("Not valid session!");
+      return;
+    }
+
+    setActiveSession(session);
+  }
+
   return (
     <div className="h-full flex flex-col">
       <Header logo={stack.logo} info={stack.info} />
+      <div className="mt-4">Active ses: {activeSession}</div>
       <select 
+        onChange={handleSessionChange}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-[200px] p-2.5 mt-5"
       >
         <option value={""}>

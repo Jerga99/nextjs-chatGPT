@@ -19,8 +19,6 @@ export default function Stack({stack, stackKey}) {
   const {user} = useUser();
   const chatRef = useRef(null);
 
-  console.log(user);
-
   useEffect(() => {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
   }, [messages]);
@@ -85,6 +83,7 @@ export default function Stack({stack, stackKey}) {
     <div className="h-full flex flex-col">
       <Header logo={stack.logo} info={stack.info} />
       <div className="mt-4">Active ses: {activeSession}</div>
+      <div className="mt-4">Uid: {user?.uid}</div>
       <select 
         onChange={handleSessionChange}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-[200px] p-2.5 mt-5"

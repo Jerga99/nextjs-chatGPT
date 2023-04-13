@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Message from "@/components/Message";
 import Prompt from "@/components/Prompt";
 import { useEffect, useRef, useState } from "react";
+import useUser from "@/hooks/useUser";
 
 const SESSION_KEYS = [
   "u1-2023-04-13T15:36:20.424Z",
@@ -15,17 +16,10 @@ const SESSION_KEYS = [
 export default function Stack({stack, stackKey}) {
   const [messages, setMessages] = useState([]);
   const [activeSession, setActiveSession] = useState("");
+  const {user} = useUser();
   const chatRef = useRef(null);
 
-  useEffect(() => {
-    const getUser = async () => {
-      const res = await fetch("/api/user");
-      const data = await res.json();
-      console.log("User fetched: " + data?.uid);
-    }
-
-    getUser();
-  }, []);
+  console.log(user);
 
   useEffect(() => {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);

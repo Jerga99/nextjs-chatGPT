@@ -18,6 +18,16 @@ export default function Stack({stack, stackKey}) {
   const chatRef = useRef(null);
 
   useEffect(() => {
+    const getUser = async () => {
+      const res = await fetch("/api/user");
+      const data = await res.json();
+      console.log("User fetched: " + data?.uid);
+    }
+
+    getUser();
+  }, []);
+
+  useEffect(() => {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
   }, [messages]);
 

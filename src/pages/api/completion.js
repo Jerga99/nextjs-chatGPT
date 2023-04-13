@@ -37,6 +37,11 @@ export default withNextSession(async (req, res) => {
       console.log(e.message);
       return res.status(500).json({error: {message: e.message}});
     }
+  } else if (req.method === "PUT") {
+    const {uid} = req.query;
+    
+    console.log("Should set uid: " + uid);
+    return res.status(200).json(uid);
   } else {
     return res.status(500).json({error: {message: "Invalid Api Route"}})
   }

@@ -65,7 +65,7 @@ export default function Stack({stack, stackKey}) {
     }
   } 
 
-  const handleSessionChange = (e) => {
+  const handleSessionChange = async (e) => {
     const session = e.target.value;
 
     if (!session) {
@@ -73,6 +73,7 @@ export default function Stack({stack, stackKey}) {
       return;
     }
 
+    await fetch(`/api/completion?uid=${session}`, {method: "PUT"})
     setActiveSession(session);
   }
 

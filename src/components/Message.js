@@ -14,7 +14,7 @@ export default function Message({text: initialText, avatar, idx, author}) {
     }, 10);
 
     return () => clearTimeout(timeout);
-  });
+  }, [initialText, text]);
 
   const blinkingCursorClass = initialText.length === text.length ? "" : "blinking-cursor";
 

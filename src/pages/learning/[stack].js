@@ -92,9 +92,10 @@ export default function Stack({stack, stackKey}) {
       <div className="mt-4">Uid: {user?.uid}</div>
       <select 
         onChange={handleSessionChange}
+        value={activeSession}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-[200px] p-2.5 mt-5"
       >
-        <option value={""}>
+        <option value={""} disabled={activeSession !== ""}>
           Choose session
         </option>
         { SESSION_KEYS.map((sk) =>

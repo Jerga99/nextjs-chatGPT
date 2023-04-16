@@ -21,6 +21,9 @@ export async function dbConnect() {
     const db = new Low(adapter);
     cached.conn = db;
   }
+
+  await cached.conn.read();
+  cached.conn.data ||= {messageHistory: {}};
   
   return cached.conn;
 }

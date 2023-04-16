@@ -20,6 +20,14 @@ export default function Stack({stack, stackKey}) {
   const chatRef = useRef(null);
 
   useEffect(() => {
+    const cleanChatHistory = async () => {
+      await fetch("/api/completion", {method: "DELETE"});
+    }
+
+    cleanChatHistory();
+  }, []);
+
+  useEffect(() => {
     if (user) {
       setActiveSession(user.uid);
     }

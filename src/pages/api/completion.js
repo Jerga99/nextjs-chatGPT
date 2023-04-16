@@ -33,10 +33,7 @@ export default withNextSession(async (req, res) => {
 
     try {
       const db = await dbConnect();
-      await db.read();
-
-      db.data ||= {messageHistory: {}};
-
+      
       db.data.messageHistory[user.uid] ||= [];
       db.data.messageHistory[user.uid].push(`${USER_NAME}: ${prompt}\n`);
 
@@ -76,6 +73,18 @@ export default withNextSession(async (req, res) => {
     await req.session.save();
     
     return res.status(200).json(uid);
+  } else if (req.method === "DELETE") {
+    const {user} = req.session;
+
+    if (user) {
+      const db = await dbConnect();
+      db.data.messageHistory[user.uid] = [];
+      await db.write();
+      
+      return res.status(200).json({message: "History cleared!"});
+    }
+
+    return res.status(200).json({message: "Nothing to clear!"});
   } else {
     return res.status(500).json({error: {message: "Invalid Api Route"}})
   }

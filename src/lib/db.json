@@ -1,12 +1,6 @@
 {
   "messageHistory": {
-    "u3-2023-04-13T15:36:20.421Z": [
-      "Human: what is my name?\n",
-      "Walt: I'm sorry, I don't know that. I only know React JS. Can I help you with anything related to React JS?\n",
-      "Human: ok, then tell me about React js\n",
-      "Walt: Sure thing! React JS is a JavaScript library used for building user interfaces. It's maintained by Facebook and a community of developers and was released in 2013. It's used for creating components, managing state and data flow, and creating UIs for single-page applications.\n",
-      "Human: what is state?\n",
-      "Walt: In React, state is an object that holds data and information about the component. The state object can be updated and changed, and when it does, the component will be re-rendered. The state object is mutable and should be treated as such.\n"
-    ]
+    "u1-2023-04-13T15:36:20.424Z": [],
+    "u4-2023-04-13T15:36:20.999Z": []
   }
 }

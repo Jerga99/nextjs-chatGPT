@@ -22,7 +22,6 @@ export async function dbConnect() {
     cached.conn = db;
   }
 
-  await cached.conn.read();
   cached.conn.data ||= {messageHistory: {}};
   
   return cached.conn;

@@ -54,8 +54,6 @@ export default withNextSession(async (req, res) => {
         db.data.messageHistory[user.uid].splice(0,2);
       }
 
-      await db.write();
-
       return res.status(200).json({result: aiResponse});
     } catch(e) {
       console.log(e.message);
@@ -81,7 +79,6 @@ export default withNextSession(async (req, res) => {
     if (user) {
       const db = await dbConnect();
       db.data.messageHistory[user.uid] = [];
-      await db.write();
 
       return res.status(200).json({message: "History cleared!"});
     }

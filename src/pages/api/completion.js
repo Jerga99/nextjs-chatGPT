@@ -12,6 +12,7 @@ const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = ()
 
 const USER_NAME = "Human";
 const AI_NAME = "Walt";
+const MEMORY_SIZE = 6;
 
 export default withNextSession(async (req, res) => {
   if (req.method === "POST") {
@@ -40,9 +41,6 @@ export default withNextSession(async (req, res) => {
       db.data.messageHistory[user.uid].push(`${USER_NAME}: ${prompt}\n`);
 
       const openai = new OpenAIApi(configuration);
-
-      console.log(AI_PROMPT + db.data.messageHistory[user.uid].join("") + "Walt:");
-      
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: AI_PROMPT + db.data.messageHistory[user.uid].join("") + "Walt:",
@@ -52,8 +50,11 @@ export default withNextSession(async (req, res) => {
 
       const aiResponse = (completion.data.choices[0].text).trim();
       db.data.messageHistory[user.uid].push(`${AI_NAME}: ${aiResponse}\n`);
+       
+      if (db.data.messageHistory[user.uid].length > MEMORY_SIZE) {
+        db.data.messageHistory[user.uid].splice(0,2);
+      }
 
-      console.log(db.data.messageHistory);
       await db.write();
 
       return res.status(200).json({result: aiResponse});

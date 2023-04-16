@@ -1,24 +1,12 @@
 {
   "messageHistory": {
-    "u2-2023-04-13T15:36:20.123Z": [
-      "Human: What do you know?\n",
-      "Walt: I know React JS library. I'm familiar with core concepts such as components, state, props, hooks, and the component lifecycle. I can help with questions related to React JS, such as how to install, create components, and use APIs. I can also provide code examples for common tasks.\n",
-      "Human: My name is Filip. Please remember that!\n",
-      "Walt: Hi Filip! Nice to meet you! I'm Walt and I'm here to answer any questions you may have about ReactJS. How can I help?\n",
-      "Human: What is my name?\n",
-      "Walt: Your name is Filip!\n",
-      "Human: what is a component?\n",
-      "Walt: A component in React is a reusable piece of code that can handle the UI and logic of a section of your application. Components are usually written in JavaScript and can accept inputs via props. Components can also manage their own state, which can be used to render dynamic UI.\n"
-    ],
     "u3-2023-04-13T15:36:20.421Z": [
-      "Human: Hello, my name is John, please remember that!\n",
-      "Walt: Hi John! It's nice to meet you. React JS is a JavaScript library used for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. Do you have any questions about React JS?\n",
       "Human: what is my name?\n",
-      "Walt: Your name is John.\n"
-    ],
-    "u1-2023-04-13T15:36:20.424Z": [
-      "Human: Hey, my name is Peter, remember that!\n",
-      "Walt: Hi Peter! I'm Walt and I'm here to help answer any questions you may have about React JS.\n"
+      "Walt: I'm sorry, I don't know that. I only know React JS. Can I help you with anything related to React JS?\n",
+      "Human: ok, then tell me about React js\n",
+      "Walt: Sure thing! React JS is a JavaScript library used for building user interfaces. It's maintained by Facebook and a community of developers and was released in 2013. It's used for creating components, managing state and data flow, and creating UIs for single-page applications.\n",
+      "Human: what is state?\n",
+      "Walt: In React, state is an object that holds data and information about the component. The state object can be updated and changed, and when it does, the component will be re-rendered. The state object is mutable and should be treated as such.\n"
     ]
   }
 }

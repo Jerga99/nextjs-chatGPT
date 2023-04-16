@@ -10,10 +10,11 @@ const configuration = new Configuration({
 const AI_PROMPT = "The following is a conversation with Walt. Walt is helpful and creative. Walt's only knowledge is React JS library. He can only answer questions related to React JS. He only cares about React JS. Walt provides often code examples. Walt provides answers formated in markdown format."
 const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = () => {\n  return <div>I'm a simple component!</div>;\n};\n\nexport default MyComponent;\n```\n\nThis example is a basic React component. It imports the React library, defines a component function, and returns a DOM element. Finally, the component is exported so it can be imported and used in other components.";
 
+const USER_NAME = "Human";
+const AI_NAME = "Walt";
+
 export default withNextSession(async (req, res) => {
   if (req.method === "POST") {
-    const db = await dbConnect();
-    console.log(db);
     const body = req.body;
     const prompt = body.prompt || "";
     const {user} = req.session;
@@ -26,12 +27,15 @@ export default withNextSession(async (req, res) => {
       return res.status(500).json({error: {message: "Session is missing!"}});
     }
 
-    await new Promise((res) => setTimeout(res, 500));
-    return res.status(200).json({result: AI_RESPONSE});
+    // await new Promise((res) => setTimeout(res, 500));
+    // return res.status(200).json({result: AI_RESPONSE});
 
     try {
-      const openai = new OpenAIApi(configuration);
+      const db = await dbConnect();
+      db.data.messageHistory[user.uid] ||= [];
+      db.data.messageHistory[user.uid].push(`${USER_NAME}: ${prompt}\n`);
 
+      const openai = new OpenAIApi(configuration);
       const formatedPrompt = AI_PROMPT + "\n" + prompt + "\n" + "Walt:";
 
       const completion = await openai.createCompletion({
@@ -42,6 +46,10 @@ export default withNextSession(async (req, res) => {
       });
 
       const aiResponse = (completion.data.choices[0].text).trim();
+      db.data.messageHistory[user.uid].push(`${AI_NAME}: ${aiResponse}\n`);
+
+      console.log(db.data.messageHistory);
+
       return res.status(200).json({result: aiResponse});
     } catch(e) {
       console.log(e.message);

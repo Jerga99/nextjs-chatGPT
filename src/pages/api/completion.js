@@ -1,6 +1,7 @@
 
 import { Configuration, OpenAIApi } from "openai";
 import { withNextSession } from "@/lib/session";
+import { dbConnect } from "@/lib/lowDb";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
@@ -11,6 +12,8 @@ const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = ()
 
 export default withNextSession(async (req, res) => {
   if (req.method === "POST") {
+    const db = await dbConnect();
+    console.log(db);
     const body = req.body;
     const prompt = body.prompt || "";
     const {user} = req.session;

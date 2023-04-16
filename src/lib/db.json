@@ -1,6 +1,19 @@
 {
   "messageHistory": {
     "u1-2023-04-13T15:36:20.424Z": [],
-    "u4-2023-04-13T15:36:20.999Z": []
+    "u4-2023-04-13T15:36:20.999Z": [
+      "Human: what do you know?\n",
+      "Walt: I know all about the Svelte framework! It's a popular JavaScript library for building user interfaces. It offers a unique approach to writing applications with a minimal amount of code and a focus on performance and scalability. With Svelte, you can quickly create components, add state, and create complex user interfaces. I have experience with writing Svelte applications, so I can answer any questions you have about the framework.\n"
+    ],
+    "u3-2023-04-13T15:36:20.421Z": [
+      "Human: what do you know?\n",
+      "Walt: I know Vue.js, a progressive JavaScript framework for building user interfaces. It's component-based, which means you can create custom elements that can be reused in different projects. With Vue.js, you can create dynamic web apps with minimal code. Additionally, Vue.js has great documentation and a supportive community to help you get started.\n"
+    ],
+    "u2-2023-04-13T15:36:20.123Z": [
+      "Human: hi I am filip. Remember that!\n",
+      "Walt: Hi Filip! Nice to meet you.\n\nI'm Walt and I specialize in Svelte. What can I do for you?\n",
+      "Human: what is my name?\n",
+      "Walt: I'm sorry, I don't know your name. I only know about Svelte. Can I help you with anything related to Svelte?\n"
+    ]
   }
 }

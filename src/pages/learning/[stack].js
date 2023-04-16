@@ -54,7 +54,7 @@ export default function Stack({stack, stackKey}) {
       ]
     });
 
-    const response = await fetch("/api/completion", {
+    const response = await fetch(`/api/completion?stack=${stackKey}`, {
       method: "POST",
       body: JSON.stringify({prompt}),
       headers: {

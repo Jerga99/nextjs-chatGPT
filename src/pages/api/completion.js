@@ -2,12 +2,12 @@
 import { Configuration, OpenAIApi } from "openai";
 import { withNextSession } from "@/lib/session";
 import { dbConnect } from "@/lib/lowDb";
+import bots from "./bots.json";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const AI_PROMPT = "The following is a conversation with Walt. Walt is helpful and creative. Walt's only knowledge is React JS library. He can only answer questions related to React JS. He only cares about React JS. Walt provides often code examples. Walt provides answers formated in markdown format."
 const AI_RESPONSE = "```js\nimport React from 'react';\n\nconst MyComponent = () => {\n  return <div>I'm a simple component!</div>;\n};\n\nexport default MyComponent;\n```\n\nThis example is a basic React component. It imports the React library, defines a component function, and returns a DOM element. Finally, the component is exported so it can be imported and used in other components.";
 
 const USER_NAME = "Human";
@@ -16,6 +16,7 @@ const MEMORY_SIZE = 6;
 
 export default withNextSession(async (req, res) => {
   if (req.method === "POST") {
+    const {stack} = req.query;
     const body = req.body;
     const prompt = body.prompt || "";
     const {user} = req.session;
@@ -37,10 +38,11 @@ export default withNextSession(async (req, res) => {
       db.data.messageHistory[user.uid] ||= [];
       db.data.messageHistory[user.uid].push(`${USER_NAME}: ${prompt}\n`);
 
+      const aiPrompt = bots[stack].prompt;
       const openai = new OpenAIApi(configuration);
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: AI_PROMPT + db.data.messageHistory[user.uid].join("") + "Walt:",
+        prompt: aiPrompt + db.data.messageHistory[user.uid].join("") + "Walt:",
         temperature: 0.7,
         max_tokens: 1024
       });
@@ -80,7 +82,7 @@ export default withNextSession(async (req, res) => {
       const db = await dbConnect();
       db.data.messageHistory[user.uid] = [];
       await db.write();
-      
+
       return res.status(200).json({message: "History cleared!"});
     }
 

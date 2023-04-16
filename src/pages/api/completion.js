@@ -26,8 +26,6 @@ export default withNextSession(async (req, res) => {
       return res.status(500).json({error: {message: "Session is missing!"}});
     }
 
-    console.log(user.uid + " wants to get some asnwers!");
-
     await new Promise((res) => setTimeout(res, 500));
     return res.status(200).json({result: AI_RESPONSE});
 

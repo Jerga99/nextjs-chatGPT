@@ -9,9 +9,19 @@ import { JSONFile } from "lowdb/node";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const file = join(__dirname, "db.json");
 
+let cached = global.lowDb;
+
+if (!cached) {
+  cached = global.lowDb = { conn: null };
+}
+
 export async function dbConnect() {
-  const adapter = new JSONFile(file);
-  const db = new Low(adapter);
-  return db;
+  if (!cached.conn) {
+    const adapter = new JSONFile(file);
+    const db = new Low(adapter);
+    cached.conn = db;
+  }
+  
+  return cached.conn;
 }
 

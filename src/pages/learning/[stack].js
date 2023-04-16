@@ -20,6 +20,12 @@ export default function Stack({stack, stackKey}) {
   const chatRef = useRef(null);
 
   useEffect(() => {
+    if (user) {
+      setActiveSession(user.uid);
+    }
+  }, [user]);
+
+  useEffect(() => {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
   }, [messages]);
 

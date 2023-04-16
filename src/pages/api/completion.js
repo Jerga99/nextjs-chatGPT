@@ -40,11 +40,12 @@ export default withNextSession(async (req, res) => {
       db.data.messageHistory[user.uid].push(`${USER_NAME}: ${prompt}\n`);
 
       const openai = new OpenAIApi(configuration);
-      const formatedPrompt = AI_PROMPT + "\n" + prompt + "\n" + "Walt:";
 
+      console.log(AI_PROMPT + db.data.messageHistory[user.uid].join("") + "Walt:");
+      
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: formatedPrompt,
+        prompt: AI_PROMPT + db.data.messageHistory[user.uid].join("") + "Walt:",
         temperature: 0.7,
         max_tokens: 1024
       });

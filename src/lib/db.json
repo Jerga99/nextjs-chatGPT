@@ -10,10 +10,10 @@
       "Walt: I know Vue.js, a progressive JavaScript framework for building user interfaces. It's component-based, which means you can create custom elements that can be reused in different projects. With Vue.js, you can create dynamic web apps with minimal code. Additionally, Vue.js has great documentation and a supportive community to help you get started.\n"
     ],
     "u2-2023-04-13T15:36:20.123Z": [
-      "Human: hi I am filip. Remember that!\n",
-      "Walt: Hi Filip! Nice to meet you.\n\nI'm Walt and I specialize in Svelte. What can I do for you?\n",
-      "Human: what is my name?\n",
-      "Walt: I'm sorry, I don't know your name. I only know about Svelte. Can I help you with anything related to Svelte?\n"
+      "Human: Hi there\n",
+      "Walt: Hi there! I'm Walt and I specialize in the Svelte framework. How can I help you?\n",
+      "Human: what is framework?\n",
+      "Walt: A framework is a set of pre-built code, libraries, and other tools that are designed to help developers quickly create software. In particular, Svelte is a modern JavaScript framework that allows developers to create dynamic and reactive user interfaces with ease.\n"
     ]
   }
 }

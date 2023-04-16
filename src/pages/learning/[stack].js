@@ -114,6 +114,11 @@ export default function Stack({stack, stackKey}) {
       </select>
       <hr className="my-4" />
       <div ref={chatRef} className="chat flex flex-col h-full overflow-scroll">
+        { messages.length === 0 && 
+          <div className="bg-yellow-200 p-4 rounded-2xl">
+            No messages yet. Ask me something.
+          </div>
+        }
         { messages.map((message, i) =>
           <Message 
             key={message.id}
